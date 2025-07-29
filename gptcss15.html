@@ -1,0 +1,91 @@
+<html>
+<head>
+  <title>Age Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: skyblue;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .calculator-box {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px gray;
+      width: 300px;
+      text-align: center;
+    }
+
+    h2 {
+      color: indigo;
+    }
+
+    input {
+      padding: 10px;
+      width: 100%;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      border: 1px solid lightgray;
+    }
+
+    button {
+      padding: 10px;
+      width: 100%;
+      background-color: mediumseagreen;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: seagreen;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      color: darkgreen;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="calculator-box">
+    <h2>Age Calculator</h2>
+    <label for="dob">Enter your Date of Birth:</label>
+    <input type="date" id="dob">
+    <button onclick="calculateAge()">Calculate Age</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function calculateAge() {
+      var dob = document.getElementById("dob").value;
+      if (dob === "") {
+        document.getElementById("result").innerText = "Please enter a valid date.";
+        return;
+      }
+
+      var birthDate = new Date(dob);
+      var currentDate = new Date();
+
+      var age = currentDate.getFullYear() - birthDate.getFullYear();
+      var month = currentDate.getMonth() - birthDate.getMonth();
+
+      if (month < 0 || (month === 0 && currentDate.getDate() < birthDate.getDate())) {
+        age--;
+      }
+
+      document.getElementById("result").innerText = "Your Age is: " + age + " years.";
+    }
+  </script>
+
+</body>
+</html>
